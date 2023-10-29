@@ -63,16 +63,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function displayResults(data) {
-        if (!data || !data.results || data.results.length === 0) {
-            searchResults.innerHTML = 'No results found';
-            return;
-          }
-        
-          const images = data.results.map(result => {
-            return `<img src="${result.urls.small}" alt="${result.description || 'Unsplash Image'}" />`;
-          }).join('');
-        
-          searchResults.innerHTML = images;
-    }
+  if (!data || !data.results || data.results.length === 0) {
+    searchResults.innerHTML = 'No results found';
+    return;
+  }
+
+  const images = data.results.map(result => {
+    const tags = result.tags.map(tag => tag.title).join(', ');
+
+    return `
+      <div class="image-card">
+        <img src="${result.urls.small}" alt="${result.description || 'Unsplash Image'}" />
+        <div class="image-info">
+          <p><strong>Description:</strong> ${result.description || 'N/A'}</p>
+          <p><strong>Creator:</strong> ${result.user.name}</p>
+          <p><strong>Location:</strong> ${result.user.location || 'N/A'}</p>
+          <p><strong>Views:</strong> ${result.views}</p>
+          <p><strong>Tags:</strong> ${tags || 'N/A'}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  searchResults.innerHTML = images;
+}
   });
   
