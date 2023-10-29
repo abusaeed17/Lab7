@@ -37,3 +37,19 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
+.image-card {
+  display: inline-block;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.image-info {
+  padding: 10px;
+}
+
+.image-info p {
+  margin: 5px 0;
+}
